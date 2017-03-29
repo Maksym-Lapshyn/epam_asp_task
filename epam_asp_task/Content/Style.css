@@ -1,0 +1,16 @@
+﻿main{
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+.content-wrapper{
+    margin-left:10%;
+    width:55%;
+    float:left;
+}
+
+.menu-wrapper{
+    margin-right:10%;
+    width:15%;
+    float:right;
+}

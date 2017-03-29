@@ -1,0 +1,21 @@
+﻿@using epam_asp_task.Models
+@model IEnumerable<Article>
+
+@{
+    ViewBag.Title = "CooBlog - The Coolest Articles of the Web";
+}
+
+@foreach (var article in Model)
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1>@article.ArticleName</h1>
+        </div>
+        <div class="panel-body">
+            <p>@article.ArticleContent</p>
+        </div>
+        <div class="panel-footer">
+            <p>@article.ArticlePublicationDate</p>
+        </div>
+    </div>
+}

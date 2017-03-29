@@ -1,0 +1,25 @@
+﻿@using epam_asp_task.Models
+@model IEnumerable<Feedback>
+
+@{
+    ViewBag.Title = "Feedback";
+}
+
+@foreach (var feedback in Model)
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1>@feedback.FeedbackAuthor</h1>
+        </div>
+        <div class="panel-body">
+            <p>@feedback.FeedbackContent</p>
+        </div>
+        <div class="panel-footer">
+            <p>@feedback.FeedbackPublicationDate</p>
+        </div>
+    </div>
+}
+
+@{Html.RenderAction("FeedbackForm");
+}
+    

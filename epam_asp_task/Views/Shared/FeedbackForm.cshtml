@@ -1,0 +1,21 @@
+﻿@using epam_asp_task.Models
+@model Feedback
+
+@using (Html.BeginForm("FeedbackForm", "Home", FormMethod.Post))
+{
+    <div class="input-group">
+        <p>@Html.LabelFor(f => f.FeedbackAuthor, "Your name")</p>
+        <p>@Html.TextAreaFor(f => f.FeedbackAuthor, new { @class = "input-lg" })</p>
+        <p>@Html.ValidationMessageFor(f => f.FeedbackAuthor)</p>
+
+        <p>@Html.LabelFor(f => f.FeedbackContent, "Feedback conent")</p>
+        <p>@Html.TextAreaFor(f => f.FeedbackContent, new { @class = "input-lg" })</p>
+        <p>@Html.ValidationMessageFor(f => f.FeedbackContent)</p>
+
+        @Html.HiddenFor(f => f.FeedbackId)
+        @Html.HiddenFor(f => f.FeedbackPublicationDate)
+
+        <button class="btn btn-success" type="submit">Submit feedback</button>
+    </div>
+    
+}
