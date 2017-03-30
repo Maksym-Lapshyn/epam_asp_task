@@ -11,7 +11,7 @@ namespace epam_asp_task.Models
         ProjectContext pc = new ProjectContext();
         public IEnumerable<Article> Articles { get{ return pc.Articles; } }
         public IEnumerable<Feedback> Feedbacks { get { return pc.Feedbacks; } }
-        public IEnumerable<QuizResult> QuizResults { get { return pc.QuizResults; } }
+        public IEnumerable<Inquirer> Inquirers { get { return pc.Inquirers; } }
 
         public void AddArticle(Article newArticle)
         {
@@ -45,6 +45,18 @@ namespace epam_asp_task.Models
                 pc.SaveChanges();
             }
             return feedbackToRemove;
+        }
+
+        public void AddInquirer(Inquirer newInquirer)
+        {
+            pc.Inquirers.Add(newInquirer);
+            pc.SaveChanges();
+        }
+
+        public IEnumerable<Inquirer> GetInquirerResults(string InquirerName)
+        {
+            IEnumerable<Inquirer> inquirersToAnalyze = pc.Inquirers.Where(i => i.InquirerName.Equals(InquirerName));
+            return inquirersToAnalyze;
         }
     }
 }

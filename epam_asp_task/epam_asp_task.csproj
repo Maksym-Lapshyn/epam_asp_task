@@ -137,6 +137,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomHelpers.cs" />
     <Compile Include="Models\ProjectContext.cs" />
     <Compile Include="Models\ProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +146,8 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Home\Inquirer.cshtml" />
+    <Content Include="Views\Home\GetInquirerResults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

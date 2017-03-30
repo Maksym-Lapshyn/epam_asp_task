@@ -25,7 +25,7 @@ namespace epam_asp_task.Models
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
-        public virtual DbSet<QuizResult> QuizResults { get; set; }
+        public virtual DbSet<Inquirer> Inquirers { get; set; }
     }
 
     public class Article
@@ -53,11 +53,19 @@ namespace epam_asp_task.Models
         public string FeedbackContent { get; set; }
     }
 
-    //??????????????????????
-    public class QuizResult
+    public class Inquirer
     {
-        public int QuizResultId { get; set; }
+        public int InquirerId { get; set; }
+        
+        public string InquirerName { get; set; }
 
-        public string QuizResultContent { get; set; }
+        [Required(ErrorMessage = "Enter your name")]
+        public string InquirerAuthor { get; set; }
+
+        public string InquirerTextInput { get; set; }
+
+        public string InquirerCheckboxes { get; set; }
+
+        public string InquirerRadio { get; set; }
     }
 }

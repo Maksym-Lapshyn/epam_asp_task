@@ -7,7 +7,7 @@
 
 @foreach (var feedback in Model)
 {
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h1>@feedback.FeedbackAuthor</h1>
         </div>
@@ -20,6 +20,5 @@
     </div>
 }
 
-@{Html.RenderAction("FeedbackForm");
-}
+@{Html.RenderAction("FeedbackForm");}
     

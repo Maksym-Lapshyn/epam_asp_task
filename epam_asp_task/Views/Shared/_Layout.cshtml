@@ -9,16 +9,16 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    @if(TempData["Message"] != null)
+    @if (TempData["Message"] != null)
     {
         <p class="alert alert-success">@TempData["Message"]</p>
     }
     <header>
         <div class="container-fluid text-center" id="top">
 
-            <h1>Hey, check this cool pic!</h1>
-            <p>You can find a lot of interesting stuff here, including latest articles, most innovative comments and an insanely interesting quiz!</p>
-            <img class="img-responsive" src="~/Images/header_image.jpg" />
+            <h1>Welcome to CoolBlog!</h1>
+            <p>You can find a lot of interesting stuff here, including latest articles, compromising feedback and an insanely interesting quiz!</p>
+            <img class="img-responsive" src="~/Images/header.jpg" />
         </div>
     </header>
 
@@ -29,9 +29,9 @@
             </div>
             <div class="menu-wrapper">
                 <div class="list-group">
-                    @Html.ActionLink("Main", "Index", new { }, new { @class = "list-group-item" })
+                    @Html.ActionLink("Articles", "Index", new { }, new { @class = "list-group-item" })
                     @Html.ActionLink("Guests", "Feedback", new { }, new { @class = "list-group-item" })
-                    @Html.ActionLink("Quizes", "Quiz", new { }, new { @class = "list-group-item" })
+                    @Html.ActionLink("Inquirers", "Inquirer", new { }, new { @class = "list-group-item" })
                 </div>
             </div>
         </div>

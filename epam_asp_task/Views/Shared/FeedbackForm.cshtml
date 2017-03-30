@@ -3,19 +3,24 @@
 
 @using (Html.BeginForm("FeedbackForm", "Home", FormMethod.Post))
 {
-    <div class="input-group">
-        <p>@Html.LabelFor(f => f.FeedbackAuthor, "Your name")</p>
-        <p>@Html.TextAreaFor(f => f.FeedbackAuthor, new { @class = "input-lg" })</p>
-        <p>@Html.ValidationMessageFor(f => f.FeedbackAuthor)</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Add Your Feedback</h1>
+        </div>
+        <div class="panel-body">
+            <p>@Html.LabelFor(f => f.FeedbackAuthor, "Your name")</p>
+            <p>@Html.TextBoxFor(f => f.FeedbackAuthor, new { @class = "form-control" })</p>
+            <p>@Html.ValidationMessageFor(f => f.FeedbackAuthor)</p>
 
-        <p>@Html.LabelFor(f => f.FeedbackContent, "Feedback conent")</p>
-        <p>@Html.TextAreaFor(f => f.FeedbackContent, new { @class = "input-lg" })</p>
-        <p>@Html.ValidationMessageFor(f => f.FeedbackContent)</p>
+            <p>@Html.LabelFor(f => f.FeedbackContent, "Feedback content")</p>
+            <p>@Html.TextBoxFor(f => f.FeedbackContent, new { @class = "form-control" })</p>
+            <p>@Html.ValidationMessageFor(f => f.FeedbackContent)</p>
 
-        @Html.HiddenFor(f => f.FeedbackId)
-        @Html.HiddenFor(f => f.FeedbackPublicationDate)
-
-        <button class="btn btn-success" type="submit">Submit feedback</button>
+            @Html.HiddenFor(f => f.FeedbackId)
+            @Html.HiddenFor(f => f.FeedbackPublicationDate)
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-default" type="submit">Submit feedback</button>
+        </div>
     </div>
-    
 }
