@@ -21,7 +21,7 @@ namespace epam_asp_task.Models
 
         public Article RemoveArticle(int articleToRemoveId)
         {
-            Article articleToRemove = pc.Articles.Where(a => a.ArticleId == articleToRemoveId).FirstOrDefault();
+            Article articleToRemove = pc.Articles.Where(a => a.Id == articleToRemoveId).FirstOrDefault();
             if (articleToRemove != null)
             {
                 pc.Articles.Remove(articleToRemove);
@@ -38,7 +38,7 @@ namespace epam_asp_task.Models
 
         public Feedback RemoveFeedback(int feedbackToRemoveId)
         {
-            Feedback feedbackToRemove = pc.Feedbacks.Where(a => a.FeedbackId == feedbackToRemoveId).FirstOrDefault();
+            Feedback feedbackToRemove = pc.Feedbacks.Where(a => a.Id == feedbackToRemoveId).FirstOrDefault();
             if (feedbackToRemove != null)
             {
                 pc.Feedbacks.Remove(feedbackToRemove);
@@ -55,7 +55,7 @@ namespace epam_asp_task.Models
 
         public IEnumerable<Inquirer> GetInquirerResults(string InquirerName)
         {
-            IEnumerable<Inquirer> inquirersToAnalyze = pc.Inquirers.Where(i => i.InquirerName.Equals(InquirerName));
+            IEnumerable<Inquirer> inquirersToAnalyze = pc.Inquirers.Where(i => i.Name.Equals(InquirerName));
             return inquirersToAnalyze;
         }
     }

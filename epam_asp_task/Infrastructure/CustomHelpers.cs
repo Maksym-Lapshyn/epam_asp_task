@@ -15,40 +15,40 @@ namespace epam_asp_task.Infrastructure
             ul.AddCssClass("list-group");
             Inquirer inquirer = inquirers.FirstOrDefault();
             Dictionary<string, int> resultDictionary = new Dictionary<string, int>();
-            if (inquirer.InquirerTextInput != null)
+            if (inquirer.TextInput != null)
             {
                 foreach (Inquirer singleResult in inquirers)
                 {
-                    if(!resultDictionary.ContainsKey(singleResult.InquirerTextInput))
+                    if(!resultDictionary.ContainsKey(singleResult.TextInput))
                     {
-                        resultDictionary.Add(singleResult.InquirerTextInput, 1);
+                        resultDictionary.Add(singleResult.TextInput, 1);
                     }
                     else
                     {
-                        resultDictionary[singleResult.InquirerTextInput]++;
+                        resultDictionary[singleResult.TextInput]++;
                     }
                 }
             }
-            else if (inquirer.InquirerRadio != null)
+            else if (inquirer.Radio != null)
             {
                 foreach (Inquirer singleResult in inquirers)
                 {
-                    if (!resultDictionary.ContainsKey(singleResult.InquirerRadio))
+                    if (!resultDictionary.ContainsKey(singleResult.Radio))
                     {
-                        resultDictionary.Add(singleResult.InquirerRadio, 1);
+                        resultDictionary.Add(singleResult.Radio, 1);
                     }
                     else
                     {
-                        resultDictionary[singleResult.InquirerRadio]++;
+                        resultDictionary[singleResult.Radio]++;
                     }
                 }
             }
-            else if (inquirer.InquirerCheckboxes != null)
+            else if (inquirer.Checkboxes != null)
             {
                 
                 foreach (Inquirer singleResult in inquirers)
                 {
-                    string[] checkboxesValues = singleResult.InquirerCheckboxes.Split('+');
+                    string[] checkboxesValues = singleResult.Checkboxes.Split('+');
                     foreach (string value in checkboxesValues)
                     {
                         if (!resultDictionary.ContainsKey(value))

@@ -30,42 +30,42 @@ namespace epam_asp_task.Models
 
     public class Article
     {
-        public int ArticleId { get; set; }
+        public int Id { get; set; }
 
-        public string ArticleName { get; set; }
+        public string Name { get; set; }
 
-        public DateTime ArticlePublicationDate { get; set; }
+        public DateTime PublicationDate { get; set; }
 
-        public string ArticleContent { get; set; }
+        public string Content { get; set; }
 
     }
 
     public class Feedback
     {
-        public int FeedbackId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Enter your name")]
-        public string FeedbackAuthor { get; set; }
+        public string Author { get; set; }
 
-        public DateTime FeedbackPublicationDate { get; set; }
+        public DateTime PublicationDate { get; set; }
 
         [Required(ErrorMessage = "Enter feedback content")]
-        public string FeedbackContent { get; set; }
+        public string Content { get; set; }
     }
 
     public class Inquirer
     {
-        public int InquirerId { get; set; }
+        public int Id { get; set; }
         
-        public string InquirerName { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Enter your name")]
-        public string InquirerAuthor { get; set; }
+        public string Author { get; set; }
 
-        public string InquirerTextInput { get; set; }
+        public string TextInput { get; set; }
 
-        public string InquirerCheckboxes { get; set; }
+        public string Checkboxes { get; set; }
 
-        public string InquirerRadio { get; set; }
+        public string Radio { get; set; }
     }
 }

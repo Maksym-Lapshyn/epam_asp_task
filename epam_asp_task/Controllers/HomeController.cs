@@ -39,7 +39,7 @@ namespace epam_asp_task.Controllers
         {
             if (ModelState.IsValid)
             {
-                newFeedback.FeedbackPublicationDate = DateTime.UtcNow;
+                newFeedback.PublicationDate = DateTime.UtcNow;
                 TempData["Message"] = "Hurray! Your feedback is added!";
                 repository.AddFeedback(newFeedback);
                 return RedirectToAction("Feedback");
@@ -51,9 +51,9 @@ namespace epam_asp_task.Controllers
         public ActionResult Inquirer()
         {
             Inquirer newInquirer = new Inquirer();
-            newInquirer.InquirerName = "Place of Origin Inquirer";
-            newInquirer.InquirerCheckboxes = null;
-            newInquirer.InquirerRadio = null;
+            newInquirer.Name = "Place of Origin Inquirer";
+            newInquirer.Checkboxes = null;
+            newInquirer.Radio = null;
             return View(newInquirer);
         }
 
@@ -64,7 +64,7 @@ namespace epam_asp_task.Controllers
             {
                 TempData["Message"] = "Hurray! Your response on inquirer is added!";
                 repository.AddInquirer(newInquirer);
-                return RedirectToAction("GetInquirerResults", new { inquirerName = newInquirer.InquirerName });
+                return RedirectToAction("GetInquirerResults", new { inquirerName = newInquirer.Name });
             }
             return View("Inquirer");
         }
@@ -78,57 +78,57 @@ namespace epam_asp_task.Controllers
         private void GenerateContent()
         {
             Article firstArticle = new Article();
-            firstArticle.ArticleName = "First Article of this Blog";
-            firstArticle.ArticlePublicationDate = DateTime.UtcNow;
-            firstArticle.ArticleContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
+            firstArticle.Name = "First Article of this Blog";
+            firstArticle.PublicationDate = DateTime.UtcNow;
+            firstArticle.Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
             repository.AddArticle(firstArticle);
 
             Article secondArticle = new Article();
-            secondArticle.ArticleName = "Second Article of this Blog";
-            secondArticle.ArticlePublicationDate = DateTime.UtcNow;
-            secondArticle.ArticleContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
+            secondArticle.Name = "Second Article of this Blog";
+            secondArticle.PublicationDate = DateTime.UtcNow;
+            secondArticle.Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
             repository.AddArticle(secondArticle);
 
             Feedback firstFeedback = new Feedback();
-            firstFeedback.FeedbackAuthor = "good_user_5151";
-            firstFeedback.FeedbackPublicationDate = DateTime.UtcNow;
-            firstFeedback.FeedbackContent = "damn, this website is pretty good!";
+            firstFeedback.Author = "good_user_5151";
+            firstFeedback.PublicationDate = DateTime.UtcNow;
+            firstFeedback.Content = "damn, this website is pretty good!";
             repository.AddFeedback(firstFeedback);
 
             Feedback secondFeedback = new Feedback();
-            secondFeedback.FeedbackAuthor = "bad_user_666";
-            secondFeedback.FeedbackPublicationDate = DateTime.UtcNow;
-            secondFeedback.FeedbackContent = "what a bullsh!t, the author of this garbage is a moron!";
+            secondFeedback.Author = "bad_user_666";
+            secondFeedback.PublicationDate = DateTime.UtcNow;
+            secondFeedback.Content = "what a bullsh!t, the author of this garbage is a moron!";
             repository.AddFeedback(secondFeedback);
 
             Inquirer firstInquirer = new Inquirer();
-            firstInquirer.InquirerName = "Place of Origin Inquirer";
-            firstInquirer.InquirerAuthor = "user_5151561";
-            firstInquirer.InquirerTextInput = "Kharkiv";
+            firstInquirer.Name = "Place of Origin Inquirer";
+            firstInquirer.Author = "user_5151561";
+            firstInquirer.TextInput = "Kharkiv";
             repository.AddInquirer(firstInquirer);
 
             Inquirer secondInquirer = new Inquirer();
-            secondInquirer.InquirerName = "Place of Origin Inquirer";
-            secondInquirer.InquirerAuthor = "user_fasgaga";
-            secondInquirer.InquirerTextInput = "Kharkiv";
+            secondInquirer.Name = "Place of Origin Inquirer";
+            secondInquirer.Author = "user_fasgaga";
+            secondInquirer.TextInput = "Kharkiv";
             repository.AddInquirer(secondInquirer);
 
             Inquirer thirdInquirer = new Inquirer();
-            thirdInquirer.InquirerName = "Place of Origin Inquirer";
-            thirdInquirer.InquirerAuthor = "user_1415";
-            thirdInquirer.InquirerTextInput = "Kyiv";
+            thirdInquirer.Name = "Place of Origin Inquirer";
+            thirdInquirer.Author = "user_1415";
+            thirdInquirer.TextInput = "Kyiv";
             repository.AddInquirer(thirdInquirer);
 
             Inquirer fourthInquirer = new Inquirer();
-            fourthInquirer.InquirerName = "Place of Origin Inquirer";
-            fourthInquirer.InquirerAuthor = "user_1415";
-            fourthInquirer.InquirerTextInput = "Kyiv";
+            fourthInquirer.Name = "Place of Origin Inquirer";
+            fourthInquirer.Author = "user_1415";
+            fourthInquirer.TextInput = "Kyiv";
             repository.AddInquirer(fourthInquirer);
 
             Inquirer fifthInquirer = new Inquirer();
-            fifthInquirer.InquirerName = "Place of Origin Inquirer";
-            fifthInquirer.InquirerAuthor = "user_1415";
-            fifthInquirer.InquirerTextInput = "Poltava";
+            fifthInquirer.Name = "Place of Origin Inquirer";
+            fifthInquirer.Author = "user_1415";
+            fifthInquirer.TextInput = "Poltava";
             repository.AddInquirer(fifthInquirer);
         }
     }

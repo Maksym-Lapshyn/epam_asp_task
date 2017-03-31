@@ -9,19 +9,19 @@
 {
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>@Model.InquirerName</h1>
+            <h1>@Model.Name</h1>
         </div>
         <div class="panel-body">
-            <p>@Html.LabelFor(i => i.InquirerAuthor, "What is your name?")</p>
-            <p>@Html.TextBoxFor(i => i.InquirerAuthor, new { @class = "form-control" })</p>
+            <p>@Html.LabelFor(i => i.Author, "What is your name?")</p>
+            <p>@Html.TextBoxFor(i => i.Author, new { @class = "form-control" })</p>
 
-            <p>@Html.LabelFor(i => i.InquirerTextInput, "Where are you from?")</p>
-            <p>@Html.TextBoxFor(i => i.InquirerTextInput, new { @class = "form-control" })</p>
+            <p>@Html.LabelFor(i => i.TextInput, "Where are you from?")</p>
+            <p>@Html.TextBoxFor(i => i.TextInput, new { @class = "form-control" })</p>
 
-            @Html.HiddenFor(i => i.InquirerId)
-            @Html.HiddenFor(i => i.InquirerCheckboxes)
-            @Html.HiddenFor(i => i.InquirerRadio)
-            @Html.HiddenFor(i => i.InquirerName)
+            @Html.HiddenFor(i => i.Id)
+            @Html.HiddenFor(i => i.Checkboxes)
+            @Html.HiddenFor(i => i.Radio)
+            @Html.HiddenFor(i => i.Name)
         </div>
         <div class="panel-footer">
             <p><button type="submit" class="btn btn-default">Submit Inquirer</button></p>
