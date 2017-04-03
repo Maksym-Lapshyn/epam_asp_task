@@ -13,23 +13,9 @@ namespace epam_asp_task.Infrastructure
         {
             TagBuilder ul = new TagBuilder("ul");
             ul.AddCssClass("list-group");
-            Inquirer inquirer = inquirers.FirstOrDefault();
+            Inquirer inquirer = inquirers.First();
             Dictionary<string, int> resultDictionary = new Dictionary<string, int>();
-            if (inquirer.TextInput != null)
-            {
-                foreach (Inquirer singleResult in inquirers)
-                {
-                    if(!resultDictionary.ContainsKey(singleResult.TextInput))
-                    {
-                        resultDictionary.Add(singleResult.TextInput, 1);
-                    }
-                    else
-                    {
-                        resultDictionary[singleResult.TextInput]++;
-                    }
-                }
-            }
-            else if (inquirer.Radio != null)
+            if (inquirer.Radio != null)
             {
                 foreach (Inquirer singleResult in inquirers)
                 {

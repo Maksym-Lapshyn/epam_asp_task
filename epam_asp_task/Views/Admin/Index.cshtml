@@ -1,0 +1,50 @@
+﻿@using epam_asp_task.Models
+@model List<Article>
+
+@{
+    ViewBag.Title = "All articles";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>All articles</h1>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th style="width:5%;">Id</th>
+                    <th style="width:15%;">Name</th>
+                    <th style="width:10%;">Date</th>
+                    <th style="width:40%;">Content</th>
+                    <th style="width:15%;">Keywords</th>
+                    <th style="width:15%;">Actions</th>
+                </tr>
+                @foreach (var article in Model)
+            {
+                    <tr>
+                        <td>@article.Id</td>
+                        <td>@article.Name</td>
+                        <td>@article.PublicationDate</td>
+                        <td>@article.Content</td>
+                        <td>@article.Keywords</td>
+                        
+                        <td>
+                            @Html.ActionLink("Edit", "EditArticle", new { id = article.Id }, new { @class = "btn btn-success" })
+                            @using (Html.BeginForm("DeleteArticle", "Admin", FormMethod.Post))
+                            {
+                                @Html.Hidden("id", article.Id)
+                                <input type="submit" class="btn btn-danger" value="Delete" />
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="panel-footer">
+            <p>Amount of articles - @Model.Count()</p>
+            <p>@Html.ActionLink("New article", "CreateArticle", null, new { @class = "btn btn-success" })</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@model epam_asp_task.Models.Article
+
+@{
+
+    ViewBag.Title = "Article";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="panel">
+        <div class="panel-heading">
+            @if (ViewBag.New == true && Html.ValidationSummary() != MvcHtmlString.Empty)
+            {
+                <h1>Add new article</h1>
+                ViewBag.New = false;
+            }
+            else
+            {
+                <h1>Edit "@Model.Name"</h1>
+            }
+        </div>
+        @using (Html.BeginForm("EditArticle", "Admin", FormMethod.Post))
+        {
+        <div class="panel-body">
+            @Html.HiddenFor(a => a.Id)
+            @Html.HiddenFor(a =>a.PublicationDate)
+
+            <p>@Html.LabelFor(a => a.Name)</p>
+            @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
+            <p>@Html.ValidationMessageFor(p => p.Name)</p>
+
+            <p>@Html.LabelFor(a => a.Content)</p>
+            @Html.TextAreaFor(a => a.Content, new { @class = "form-control", rows = 5 })
+            <p>@Html.ValidationMessageFor(a => a.Content)</p>
+
+            <p>@Html.LabelFor(a => a.Keywords)</p>
+            @Html.TextAreaFor(a => a.Keywords, new { @class = "form-control", rows = 5 })
+            <p>@Html.ValidationMessageFor(a => a.Keywords)</p>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Save changes" class="btn btn-primary" />
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
+        </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@using epam_asp_task.Models
+@model Article
+
+@{
+    ViewBag.Title = "Full Article";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>@Model.Name</h1>
+    </div>
+    <div class="panel-body">
+        <p>@Model.Content</p>
+        <hr />
+        <p>@Model.PublicationDate</p>
+    </div>
+    <div class="panel-footer">
+        <p>Keywords: @Model.Keywords</p>
+    </div>
+</div>
+

@@ -1,5 +1,5 @@
 ﻿@using epam_asp_task.Models
-@model IEnumerable<Article>
+@model List<Article>
 
 @{
     ViewBag.Title = "CooBlog - The Coolest Articles of the Web";
@@ -13,9 +13,11 @@
         </div>
         <div class="panel-body">
             <p>@article.Content</p>
+            <hr />
+            <p>@article.PublicationDate</p>
         </div>
         <div class="panel-footer">
-            <p>@article.PublicationDate</p>
+            @Html.ActionLink("Full article", "Article", "Article", new { articleId = article.Id}, new { @class = "btn btn-default" })
         </div>
     </div>
 }

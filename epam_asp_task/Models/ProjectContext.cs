@@ -32,12 +32,16 @@ namespace epam_asp_task.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Enter name for the article")]
         public string Name { get; set; }
 
         public DateTime PublicationDate { get; set; }
 
+        [Required(ErrorMessage = "Enter content for the article")]
         public string Content { get; set; }
 
+        [Required(ErrorMessage = "Select keywords for the article")]
+        public string Keywords { get; set; }
     }
 
     public class Feedback
@@ -67,5 +71,44 @@ namespace epam_asp_task.Models
         public string Checkboxes { get; set; }
 
         public string Radio { get; set; }
+
+        public virtual ICollection<TextInput> TextInputs { get; set; }
+
+        public virtual ICollection<RadioInput> RadioInputs { get; set; }
+
+        public virtual ICollection<CheckboxInput> CheckboxInputs { get; set; }
+    }
+
+    public class TextInput
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Content { get; set; }
+
+        public virtual Inquirer Inquirer { get; set; }
+    }
+
+    public class RadioInput
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Content { get; set; }
+
+        public virtual Inquirer Inquirer { get; set; }
+    }
+
+    public class CheckboxInput
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Content { get; set; }
+
+        public virtual Inquirer Inquirer { get; set; }
     }
 }

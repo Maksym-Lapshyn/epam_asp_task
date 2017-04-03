@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using epam_asp_task.Infrastructure;
 using epam_asp_task.Models;
 
 namespace epam_asp_task.Controllers
@@ -18,61 +19,8 @@ namespace epam_asp_task.Controllers
             {
                 GenerateContent();
             }
-            IEnumerable<Article> articles = repository.Articles;
-            return View(articles);
-        }
-
-        public ActionResult Feedback()
-        {
-            IEnumerable<Feedback> feedbacks = repository.Feedbacks;
-            return View(feedbacks);
-        }
-
-        [HttpGet]
-        public PartialViewResult FeedbackForm()
-        {
-            return PartialView(new Feedback());
-        }
-
-        [HttpPost]
-        public ActionResult FeedbackForm(Feedback newFeedback)
-        {
-            if (ModelState.IsValid)
-            {
-                newFeedback.PublicationDate = DateTime.UtcNow;
-                TempData["Message"] = "Hurray! Your feedback is added!";
-                repository.AddFeedback(newFeedback);
-                return RedirectToAction("Feedback");
-            }
-            return View("FeedbackForm");
-        }
-
-        [HttpGet]
-        public ActionResult Inquirer()
-        {
-            Inquirer newInquirer = new Inquirer();
-            newInquirer.Name = "Place of Origin Inquirer";
-            newInquirer.Checkboxes = null;
-            newInquirer.Radio = null;
-            return View(newInquirer);
-        }
-
-        [HttpPost]
-        public ActionResult Inquirer(Inquirer newInquirer)
-        {
-            if (ModelState.IsValid)
-            {
-                TempData["Message"] = "Hurray! Your response on inquirer is added!";
-                repository.AddInquirer(newInquirer);
-                return RedirectToAction("GetInquirerResults", new { inquirerName = newInquirer.Name });
-            }
-            return View("Inquirer");
-        }
-
-        public ActionResult GetInquirerResults(string inquirerName)
-        {
-            IEnumerable<Inquirer> inquirerResults = repository.GetInquirerResults(inquirerName);
-            return View(inquirerResults);
+            List<Article> smallArticles = repository.GetSmallArticles();
+            return View(smallArticles);
         }
 
         private void GenerateContent()
@@ -81,13 +29,15 @@ namespace epam_asp_task.Controllers
             firstArticle.Name = "First Article of this Blog";
             firstArticle.PublicationDate = DateTime.UtcNow;
             firstArticle.Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
-            repository.AddArticle(firstArticle);
+            firstArticle.Keywords = "#cool #story #blog #yo";
+            repository.SaveArticle(firstArticle);
 
             Article secondArticle = new Article();
             secondArticle.Name = "Second Article of this Blog";
             secondArticle.PublicationDate = DateTime.UtcNow;
             secondArticle.Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
-            repository.AddArticle(secondArticle);
+            secondArticle.Keywords = "#hot #girls #on #the #beach";
+            repository.SaveArticle(secondArticle);
 
             Feedback firstFeedback = new Feedback();
             firstFeedback.Author = "good_user_5151";
