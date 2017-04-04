@@ -48,6 +48,7 @@ namespace epam_asp_task.Infrastructure
         {
             if(article.Id == 0)
             {
+                article.PublicationDate = DateTime.UtcNow;
                 pc.Articles.Add(article);
             }
             else
@@ -102,6 +103,40 @@ namespace epam_asp_task.Infrastructure
         {
             IEnumerable<Inquirer> inquirersToAnalyze = pc.Inquirers.Where(i => i.Name.Equals(inquirerName));
             return inquirersToAnalyze;
+        }
+
+        public List<string> GetPopularTags()
+        {
+            Dictionary<string, int> tagDictionary = new Dictionary<string, int>();
+            IEnumerable<Article> articles = pc.Articles;
+            foreach (Article article in articles)
+            {
+                string[] tags = article.Keywords.Split(' ');
+                foreach (string tag in tags)
+                {
+                    if (tagDictionary.ContainsKey(tag))
+                    {
+                        tagDictionary[tag]++;
+                    }
+                    else
+                    {
+                        tagDictionary.Add(tag, 1);
+                    }
+                }
+            }
+            var sorted = tagDictionary.OrderByDescending(x => x.Value);
+            List<string> result = new List<string>();
+            int count = 1;
+            foreach (var pair in sorted)
+            {
+                result.Add(pair.Key);
+                if(count == 20)
+                {
+                    break;
+                }
+                count++;
+            }
+            return result;
         }
     }
 }

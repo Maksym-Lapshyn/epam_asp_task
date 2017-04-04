@@ -18,7 +18,6 @@ namespace epam_asp_task.Controllers
             return View(feedbacks);
         }
 
-        [HttpGet]
         public PartialViewResult FeedbackForm()
         {
             return PartialView(new Feedback());

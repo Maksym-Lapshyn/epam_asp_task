@@ -24,7 +24,6 @@
         {
         <div class="panel-body">
             @Html.HiddenFor(a => a.Id)
-            @Html.HiddenFor(a =>a.PublicationDate)
 
             <p>@Html.LabelFor(a => a.Name)</p>
             @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
@@ -33,6 +32,8 @@
             <p>@Html.LabelFor(a => a.Content)</p>
             @Html.TextAreaFor(a => a.Content, new { @class = "form-control", rows = 5 })
             <p>@Html.ValidationMessageFor(a => a.Content)</p>
+
+            @{Html.RenderAction("PopularTags");}
 
             <p>@Html.LabelFor(a => a.Keywords)</p>
             @Html.TextAreaFor(a => a.Keywords, new { @class = "form-control", rows = 5 })

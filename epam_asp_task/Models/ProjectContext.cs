@@ -62,53 +62,11 @@ namespace epam_asp_task.Models
         public int Id { get; set; }
         
         public string Name { get; set; }
-
-        [Required(ErrorMessage = "Enter your name")]
-        public string Author { get; set; }
-
+        
         public string TextInput { get; set; }
-
+        
         public string Checkboxes { get; set; }
-
+        
         public string Radio { get; set; }
-
-        public virtual ICollection<TextInput> TextInputs { get; set; }
-
-        public virtual ICollection<RadioInput> RadioInputs { get; set; }
-
-        public virtual ICollection<CheckboxInput> CheckboxInputs { get; set; }
-    }
-
-    public class TextInput
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Content { get; set; }
-
-        public virtual Inquirer Inquirer { get; set; }
-    }
-
-    public class RadioInput
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Content { get; set; }
-
-        public virtual Inquirer Inquirer { get; set; }
-    }
-
-    public class CheckboxInput
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Content { get; set; }
-
-        public virtual Inquirer Inquirer { get; set; }
     }
 }

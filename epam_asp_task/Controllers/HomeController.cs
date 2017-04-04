@@ -51,35 +51,30 @@ namespace epam_asp_task.Controllers
             secondFeedback.Content = "what a bullsh!t, the author of this garbage is a moron!";
             repository.AddFeedback(secondFeedback);
 
-            Inquirer firstInquirer = new Inquirer();
+            /*Inquirer firstInquirer = new Inquirer();
             firstInquirer.Name = "Place of Origin Inquirer";
-            firstInquirer.Author = "user_5151561";
             firstInquirer.TextInput = "Kharkiv";
             repository.AddInquirer(firstInquirer);
 
             Inquirer secondInquirer = new Inquirer();
             secondInquirer.Name = "Place of Origin Inquirer";
-            secondInquirer.Author = "user_fasgaga";
             secondInquirer.TextInput = "Kharkiv";
             repository.AddInquirer(secondInquirer);
 
             Inquirer thirdInquirer = new Inquirer();
             thirdInquirer.Name = "Place of Origin Inquirer";
-            thirdInquirer.Author = "user_1415";
             thirdInquirer.TextInput = "Kyiv";
             repository.AddInquirer(thirdInquirer);
 
             Inquirer fourthInquirer = new Inquirer();
             fourthInquirer.Name = "Place of Origin Inquirer";
-            fourthInquirer.Author = "user_1415";
             fourthInquirer.TextInput = "Kyiv";
             repository.AddInquirer(fourthInquirer);
 
             Inquirer fifthInquirer = new Inquirer();
             fifthInquirer.Name = "Place of Origin Inquirer";
-            fifthInquirer.Author = "user_1415";
             fifthInquirer.TextInput = "Poltava";
-            repository.AddInquirer(fifthInquirer);
+            repository.AddInquirer(fifthInquirer);*/
         }
     }
 }

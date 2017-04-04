@@ -32,6 +32,10 @@
                     @Html.ActionLink("Articles", "Index", "Home", new { }, new { @class = "list-group-item" })
                     @Html.ActionLink("Guests", "Feedback", "Feedback", new { }, new { @class = "list-group-item" })
                     @Html.ActionLink("Inquirers", "Inquirer", "Inquirer", new { }, new { @class = "list-group-item" })
+                    @if (ViewBag.Title == "CooBlog - The Coolest Articles of the Web")
+                    {
+                        { Html.RenderAction("MainInquirerForm", "Inquirer"); }
+                    }
                 </div>
             </div>
         </div>

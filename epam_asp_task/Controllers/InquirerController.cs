@@ -12,14 +12,30 @@ namespace epam_asp_task.Controllers
     {
         ProjectRepository repository = new ProjectRepository();
 
-        [HttpGet]
         public ActionResult Inquirer()
         {
-            return View(new Inquirer());
+            return View();
+        }
+
+        public PartialViewResult InquirerForm()
+        {
+            Inquirer inquirer = new Inquirer();
+            inquirer.Name = "Country and color";
+            inquirer.TextInput = "Where are you from?";
+            inquirer.Radio = "What is your favorite color?+Red+Blue+Black";
+            return PartialView(inquirer);
+        }
+
+        public PartialViewResult MainInquirerForm()
+        {
+            Inquirer inquirer = new Inquirer();
+            inquirer.Name = "Where are you from?";
+            inquirer.Radio = "Where are you from?+Ukraine+Hungary+Another planet";
+            return PartialView(inquirer);
         }
 
         [HttpPost]
-        public ActionResult Inquirer(Inquirer inquirer)
+        public ActionResult InquirerForm(Inquirer inquirer)
         {
             if (ModelState.IsValid)
             {
@@ -32,8 +48,8 @@ namespace epam_asp_task.Controllers
 
         public ActionResult GetInquirerResults(string inquirerName)
         {
-            IEnumerable<Inquirer> inquirerResults = repository.GetInquirerResults(inquirerName);
-            return View(inquirerResults);
+            List<Inquirer> inquirers = repository.GetInquirerResults(inquirerName).ToList();
+            return View(inquirers);
         }
     }
 }

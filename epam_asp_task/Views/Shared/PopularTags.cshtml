@@ -1,0 +1,8 @@
+﻿@model List<string>
+
+<p><strong>Popular tags:</strong> 
+    @foreach (string tag in Model)
+    {
+        @tag
+    }
+</p>

@@ -23,6 +23,11 @@ namespace epam_asp_task.Controllers
             return View(article);
         }
 
+        public PartialViewResult PopularTags()
+        {
+            return PartialView(repository.GetPopularTags());
+        }
+
         [HttpPost]
         public ActionResult EditArticle(Article article)
         {

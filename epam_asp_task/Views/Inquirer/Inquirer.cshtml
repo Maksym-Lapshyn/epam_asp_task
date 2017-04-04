@@ -1,33 +1,9 @@
 ﻿@using epam_asp_task.Models
+@using epam_asp_task.Infrastructure
 @model Inquirer
 
 @{
     ViewBag.Title = "Inquirer";
-    Model.Name = "Place of Origin Inquirer";
 }
 
-@using (Html.BeginForm("Inquirer", "Home", FormMethod.Post))
-{
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h1>@Model.Name</h1>
-        </div>
-        <div class="panel-body">
-            <p>@Html.LabelFor(i => i.Author, "What is your name?")</p>
-            <p>@Html.TextBoxFor(i => i.Author, new { @class = "form-control" })</p>
-
-            <p>@Html.LabelFor(i => i.TextInput, "Where are you from?")</p>
-            <p>@Html.TextBoxFor(i => i.TextInput, new { @class = "form-control" })</p>
-
-            @Html.HiddenFor(i => i.Id)
-            @Html.HiddenFor(i => i.Checkboxes)
-            @Html.HiddenFor(i => i.Radio)
-            @Html.HiddenFor(i => i.Name)
-        </div>
-        <div class="panel-footer">
-            <p><button type="submit" class="btn btn-default">Submit Inquirer</button></p>
-        </div>
-    </div>
-}
-
-
+@{Html.RenderAction("InquirerForm");}
