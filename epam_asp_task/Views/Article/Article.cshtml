@@ -14,9 +14,47 @@
         <p>@Model.Content</p>
         <hr />
         <p>@Model.PublicationDate</p>
+        <hr />
+        <p>Keywords: @Model.Keywords</p>
+        <hr />
+        <p>@Html.ActionLink("Post comment", "AddComment", "Comment", new { parentId = Model.Id, article = true }, new { @class = "btn btn-default", @form = "commentForm" })</p>
     </div>
     <div class="panel-footer">
-        <p>Keywords: @Model.Keywords</p>
+        @if (Model.Comments.Count != 0)
+        {
+            foreach (Comment comment in Model.Comments)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1>@comment.Author</h1>
+                    </div>
+                    <div class="panel-body">
+                        <p>@comment.Content</p>
+                        <hr />
+                        <p>@comment.PublicationDate</p>
+                    </div>
+                    <div class="panel-footer">
+                        @if (comment.Comments.Count != 0)
+                        {
+                            foreach (Comment innerComment in comment.Comments)
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h1>@innerComment.Author</h1>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>@innerComment.Content</p>
+                                        <hr />
+                                        <p>@innerComment.PublicationDate</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
     </div>
+    @{Html.RenderAction("AddComment", "Comment");}
 </div>
 

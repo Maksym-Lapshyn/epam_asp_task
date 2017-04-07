@@ -29,7 +29,7 @@ namespace epam_asp_task.Controllers
             firstArticle.Name = "First Article of this Blog";
             firstArticle.PublicationDate = DateTime.UtcNow;
             firstArticle.Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
-            firstArticle.Keywords = "#cool #story #blog #yo";
+            firstArticle.Keywords = "#cool #story #blog #yo #girls #beach";
             repository.SaveArticle(firstArticle);
 
             Article secondArticle = new Article();

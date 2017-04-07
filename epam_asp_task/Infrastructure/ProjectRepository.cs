@@ -13,6 +13,57 @@ namespace epam_asp_task.Infrastructure
         public IEnumerable<Article> Articles { get { return pc.Articles; } }
         public IEnumerable<Feedback> Feedbacks { get { return pc.Feedbacks; } }
         public IEnumerable<Inquirer> Inquirers { get { return pc.Inquirers; } }
+        public IEnumerable<Comment> Comments { get; set; }
+
+        private const int NumberOfTags = 20;
+
+        private const int NumberOfSimilarArticles = 5;
+
+        public void AddCommentForArticle(Comment comment, int articleId)
+        {
+            pc.Comments.Add(comment);
+            Article parent = pc.Articles.Where(a => a.Id == articleId).First();
+            parent.Comments.Add(comment);
+            pc.SaveChanges();
+        }
+
+        public void AddCommentForComment(Comment comment, int commentId)
+        {
+            pc.Comments.Add(comment);
+            Comment parent = pc.Comments.Where(a => a.Id == commentId).First();
+            parent.Comments.Add(comment);
+            pc.SaveChanges();
+        }
+
+        public Dictionary<int,string> GetSimilarArticles(int articleId)
+        {
+            Article articleToAnalyze = pc.Articles.Where(a => a.Id == articleId).First();
+            string[] tagsToAnalyze = articleToAnalyze.Keywords.Split(' ');
+            Dictionary<int, string> similarArticles = new Dictionary<int, string>();
+            int articlesCount = 0;
+            foreach (Article article in pc.Articles)
+            {
+                if (article.Id == articleToAnalyze.Id)
+                {
+                    continue;
+                }
+                string[] tags = article.Keywords.Split(' ');
+                foreach (string tag in tagsToAnalyze)
+                {
+                    if (tags.Contains(tag))
+                    {
+                        similarArticles.Add(article.Id, article.Name);
+                        if (articlesCount == NumberOfSimilarArticles)
+                        {
+                            return similarArticles;
+                        }
+                        articlesCount++;
+                        break;
+                    }
+                }
+            }
+            return similarArticles;
+        }
 
         public List<Article> GetSmallArticles()
         {
@@ -82,17 +133,6 @@ namespace epam_asp_task.Infrastructure
             pc.SaveChanges();
         }
 
-        /*public Feedback RemoveFeedback(int feedbackToRemoveId)
-        {
-            Feedback feedbackToRemove = pc.Feedbacks.Where(a => a.Id == feedbackToRemoveId).FirstOrDefault();
-            if (feedbackToRemove != null)
-            {
-                pc.Feedbacks.Remove(feedbackToRemove);
-                pc.SaveChanges();
-            }
-            return feedbackToRemove;
-        }*/
-
         public void AddInquirer(Inquirer inquirer)
         {
             pc.Inquirers.Add(inquirer);
@@ -126,15 +166,15 @@ namespace epam_asp_task.Infrastructure
             }
             var sorted = tagDictionary.OrderByDescending(x => x.Value);
             List<string> result = new List<string>();
-            int count = 1;
+            int tagCount = 1;
             foreach (var pair in sorted)
             {
                 result.Add(pair.Key);
-                if(count == 20)
+                if(tagCount == NumberOfTags)
                 {
                     break;
                 }
-                count++;
+                tagCount++;
             }
             return result;
         }

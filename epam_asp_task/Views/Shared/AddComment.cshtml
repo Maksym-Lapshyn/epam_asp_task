@@ -1,0 +1,25 @@
+﻿
+@using epam_asp_task.Models
+@using epam_asp_task.Infrastructure
+@model Comment
+
+@using (Html.BeginForm("AddComment", "Comment", FormMethod.Post, new { @id = "commentForm" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Add Your Comment</h1>
+        </div>
+        <div class="panel-body">
+            <p>@Html.LabelFor(c => c.Author, "Your name")</p>
+            <p>@Html.TextBoxFor(c => c.Author, new { @class = "form-control" })</p>
+            <p>@Html.ValidationMessageFor(c => c.Author)</p>
+
+            <p>@Html.LabelFor(c => c.Content, "Comment content")</p>
+            <p>@Html.TextBoxFor(c => c.Content, new { @class = "form-control" })</p>
+            <p>@Html.ValidationMessageFor(c => c.Content)</p>
+
+            @Html.HiddenFor(c => c.Id)
+            @Html.HiddenFor(c => c.PublicationDate)
+        </div>
+    </div>
+}

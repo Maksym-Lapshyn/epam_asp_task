@@ -17,5 +17,11 @@ namespace epam_asp_task.Controllers
             Article article = repository.Articles.Where(a => a.Id == articleId).First();
             return View(article);
         }
+
+        public PartialViewResult SimilarArticles(int articleId)
+        {
+            Dictionary<int, string> similarArticles = repository.GetSimilarArticles(articleId);
+            return PartialView(similarArticles);
+        }
     }
 }

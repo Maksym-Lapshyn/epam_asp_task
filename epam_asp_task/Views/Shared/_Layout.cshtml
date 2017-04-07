@@ -36,6 +36,10 @@
                     {
                         { Html.RenderAction("MainInquirerForm", "Inquirer"); }
                     }
+                    @if (ViewBag.Title == "Full Article")
+                    {
+                        { Html.RenderAction("SimilarArticles", "Article"); }
+                    }
                 </div>
             </div>
         </div>
