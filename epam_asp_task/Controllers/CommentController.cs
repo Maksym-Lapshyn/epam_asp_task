@@ -12,19 +12,21 @@ namespace epam_asp_task.Controllers
     {
         ProjectRepository repository = new ProjectRepository();
 
-        public PartialViewResult AddComment()
+        public PartialViewResult CommentForm(int parentId, bool isArticle)
         {
+            ViewBag.ParentId = parentId;
+            ViewBag.IsArticle = isArticle;
             return PartialView(new Comment());
         }
 
         [HttpPost]
-        public ActionResult AddComment(Comment newComment, int parentId, bool article)
+        public ActionResult PostComment(Comment newComment, int parentId, bool isArticle)
         {
             if (ModelState.IsValid)
             {
                 newComment.PublicationDate = DateTime.UtcNow;
                 TempData["Message"] = "Hurray! Your comment is added!";
-                if (article)
+                if (isArticle)
                 {
                     repository.AddCommentForArticle(newComment, parentId);
                 }
@@ -32,9 +34,9 @@ namespace epam_asp_task.Controllers
                 {
                     repository.AddCommentForComment(newComment, parentId);
                 }
-                return RedirectToAction("Article", "Article");
+                return RedirectToAction("Article", "Article", new { articleId = Convert.ToInt32(Session["ArticleId"]) });
             }
-            return View("AddComment");
+            return View("CommentForm");
         }
     }
 }

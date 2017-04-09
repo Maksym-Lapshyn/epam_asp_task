@@ -1,9 +1,6 @@
-﻿
-@using epam_asp_task.Models
-@using epam_asp_task.Infrastructure
-@model Comment
+﻿@model epam_asp_task.Models.Comment
 
-@using (Html.BeginForm("AddComment", "Comment", FormMethod.Post, new { @id = "commentForm" }))
+@using (Html.BeginForm("PostComment", "Comment", new { parentId = ViewBag.ParentId, isArticle = ViewBag.IsArticle }, FormMethod.Post))
 {
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -20,6 +17,9 @@
 
             @Html.HiddenFor(c => c.Id)
             @Html.HiddenFor(c => c.PublicationDate)
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Submit comment" class="btn btn-default" />
         </div>
     </div>
 }

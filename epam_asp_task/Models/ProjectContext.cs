@@ -44,7 +44,7 @@ namespace epam_asp_task.Models
         [Required(ErrorMessage = "Select keywords for the article")]
         public string Keywords { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public Article()
         {
@@ -82,10 +82,7 @@ namespace epam_asp_task.Models
     {
         public int Id { get; set; }
 
-        public List<Comment> Comments { get; set; }
-
-        [Required]
-        public Level Level { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         [Required(ErrorMessage = "Enter your name")]
         public string Author { get; set; }
@@ -99,12 +96,5 @@ namespace epam_asp_task.Models
         {
             Comments = new List<Comment>();
         }
-    }
-
-    public enum Level
-    {
-        first = 1,
-        second = 2,
-        third = 3
     }
 }
