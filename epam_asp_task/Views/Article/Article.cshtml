@@ -17,7 +17,7 @@
         <hr />
         <p>Keywords: @Model.Keywords</p>
         <hr />
-        <p>@Html.ActionLink("Post comment", "AddComment", "Comment", new { parentId = Model.Id, article = true }, new { @class = "btn btn-default", @form = "commentForm" })</p>
+        
     </div>
     <div class="panel-footer">
         @if (Model.Comments.Count != 0)
@@ -55,6 +55,75 @@
             }
         }
     </div>
+    <div id="newComment">
+
+    </div>
     @{Html.RenderAction("AddComment", "Comment");}
+    <script>
+        function addComment(parentId, isArticle){
+            var div = document.getElementById('newComment');
+            var panel = document.createElement('div');
+            panel.className = 'panel panel-default';
+            var panelHeading = document.createElement('div');
+            panelHeading.className = 'panel-heading';
+            var h1 = document.createElement('h1');
+            h1.innerHTML = 'Add your comment';
+            panelHeading.appendChild(h1);
+            var panelBody = document.createElement('div');
+            panelBody.className = 'panel-body';
+
+            var line = document.createElement('p');
+            var label = document.createElement('label');
+            label.setAttribute('for', 'author');
+            label.innerHTML = 'Your name';
+            line.appendChild(label);
+            panelBody.appendChild(line);
+
+            line = document.createElement('p');
+            input = document.createElement('input');
+            input.setAttribute('type', 'text');
+            input.className = 'form-control';
+            input.setAttribute('id', 'author');
+            input.setAttribute('name', 'Author');
+            line.appendChild(input);
+            panelBody.appendChild(line);
+
+            line = document.createElement('p');
+            label = document.createElement('label');
+            label.setAttribute('for', 'content');
+            label.innerHTML = 'Content';
+            line.appendChild(label);
+            panelBody.appendChild(line);
+
+            line = document.createElement('p');
+            input = document.createElement('input');
+            input.setAttribute('type', 'text');
+            input.className = 'form-control';
+            input.setAttribute('id', 'content');
+            input.setAttribute('name', 'Content');
+            line.appendChild(input);
+            panelBody.appendChild(line);
+
+
+        }
+        
+    </script>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Add Your Comment</h1>
+        </div>
+        <div class="panel-body">
+            <p>@Html.LabelFor(c => c.Author, "Your name")</p>
+            <p>@Html.TextBoxFor(c => c.Author, new { @class = "form-control" })</p>
+            <p>@Html.ValidationMessageFor(c => c.Author)</p>
+
+            <p>@Html.LabelFor(c => c.Content, "Comment content")</p>
+            <p>@Html.TextBoxFor(c => c.Content, new { @class = "form-control" })</p>
+            <p>@Html.ValidationMessageFor(c => c.Content)</p>
+
+            @Html.HiddenFor(c => c.Id)
+            @Html.HiddenFor(c => c.PublicationDate)
+        </div>
+    </div>
 </div>
 
