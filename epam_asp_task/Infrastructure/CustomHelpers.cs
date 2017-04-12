@@ -18,7 +18,7 @@ namespace epam_asp_task.Infrastructure
             h1.InnerHtml += inquirer.Name;
             ul.InnerHtml += h1.ToString();
             Dictionary<string, int> textDictionary = new Dictionary<string, int>();
-            if (inquirer.TextInput != null)
+            if (inquirer.TextInput != null && inquirer.TextInput != "empty")
             {
                 foreach (Inquirer singleResult in inquirers)
                 {
@@ -43,7 +43,7 @@ namespace epam_asp_task.Infrastructure
                 ul.InnerHtml += hr.ToString();
             }
             Dictionary<string, int> radioDictionary = new Dictionary<string, int>();
-            if (inquirer.Radio != null)
+            if (inquirer.Radio != null && inquirer.Radio != "empty")
             {
                 foreach (Inquirer singleResult in inquirers)
                 {
@@ -67,36 +67,6 @@ namespace epam_asp_task.Infrastructure
                 TagBuilder hr = new TagBuilder("hr");
                 ul.InnerHtml += hr.ToString();
             }
-            /*Dictionary<string, int> checkboxDictionary = new Dictionary<string, int>();
-            if (inquirer.Checkboxes != null)
-            {
-
-                foreach (Inquirer singleResult in inquirers)
-                {
-                    string[] checkboxesValues = singleResult.Checkboxes.Split('+');
-                    foreach (string value in checkboxesValues)
-                    {
-                        if (!checkboxDictionary.ContainsKey(value))
-                        {
-                            checkboxDictionary.Add(value, 1);
-                        }
-                        else
-                        {
-                            checkboxDictionary[value]++;
-                        }
-                    }
-                }
-                var checkboxDictionaryOrdered = checkboxDictionary.OrderByDescending(x => x.Value);
-                foreach (var pair in checkboxDictionaryOrdered)
-                {
-                    TagBuilder li = new TagBuilder("li");
-                    li.AddCssClass("list-group-item");
-                    li.SetInnerText(string.Format("{0} - {1}", pair.Key, pair.Value));
-                    ul.InnerHtml += li.ToString();
-                }
-                TagBuilder hr = new TagBuilder("hr");
-                ul.InnerHtml += hr.ToString();
-            }*/
             return new MvcHtmlString(ul.ToString());
         }
 
@@ -104,7 +74,7 @@ namespace epam_asp_task.Infrastructure
         {
             TagBuilder div = new TagBuilder("div");
             div.AddCssClass("list-group");
-            if (inquirer.TextInput != null)
+            if (inquirer.TextInput != null && inquirer.TextInput != "empty")
             {
                 TagBuilder label = new TagBuilder("label");
                 label.Attributes.Add("for", "TextInput");
@@ -113,14 +83,14 @@ namespace epam_asp_task.Infrastructure
                 TagBuilder input = new TagBuilder("input");
                 input.Attributes.Add("name", "TextInput");
                 input.Attributes.Add("type", "text");
-                input.Attributes.Add("value", "Kharkiv");
+                //input.Attributes.Add("value", "Kharkiv");
                 input.Attributes.Add("placeholder", inquirer.TextInput);
                 input.AddCssClass("list-group-item");
                 div.InnerHtml += input.ToString(TagRenderMode.SelfClosing);
                 TagBuilder hr = new TagBuilder("hr");
                 div.InnerHtml += hr.ToString();
             }
-            if (inquirer.Radio != null)
+            if (inquirer.Radio != null && inquirer.Radio != "empty")
             {
                 string[] radios = inquirer.Radio.Split('+');
                 TagBuilder label = new TagBuilder("label");
@@ -137,10 +107,10 @@ namespace epam_asp_task.Infrastructure
                     radio.Attributes.Add("name", "Radio");
                     radio.Attributes.Add("id", radios[i]);
                     radio.Attributes.Add("value", radios[i]);
-                    if(i == 1)
+                    /*if(i == 1)
                     {
                         radio.Attributes.Add("checked", "checked");
-                    }
+                    }*/
                     p.InnerHtml += string.Format("{0}   {1}", label.ToString(), radio.ToString(TagRenderMode.SelfClosing));
                     p.AddCssClass("list-group-item");
                     div.InnerHtml += p.ToString();
@@ -148,29 +118,6 @@ namespace epam_asp_task.Infrastructure
                 TagBuilder hr = new TagBuilder("hr");
                 div.InnerHtml += hr.ToString();
             }
-            /*
-            if (inquirer.Checkboxes != null)
-            {
-                string[] checkboxes = inquirer.Checkboxes.Split('+');
-                TagBuilder label = new TagBuilder("label");
-                label.InnerHtml += checkboxes[0];
-                div.InnerHtml += label.ToString();
-                for (int i = 1; i < checkboxes.Length; i++)
-                {
-                    TagBuilder p = new TagBuilder("p");
-                    label = new TagBuilder("label");
-                    label.Attributes.Add("for", checkboxes[i]);
-                    label.InnerHtml += checkboxes[i];
-                    TagBuilder checkbox = new TagBuilder("input");
-                    checkbox.Attributes.Add("type", "checkbox");
-                    checkbox.Attributes.Add("name", "Chekboxes");
-                    checkbox.Attributes.Add("id", checkboxes[i]);
-                    checkbox.Attributes.Add("value", checkboxes[i]);
-                    p.InnerHtml += string.Format("{0}   {1}", label.ToString(), checkbox.ToString(TagRenderMode.SelfClosing));
-                    p.AddCssClass("list-group-item");
-                    div.InnerHtml += p.ToString();
-                }
-            }*/
             return new MvcHtmlString(div.ToString());
         }
     }

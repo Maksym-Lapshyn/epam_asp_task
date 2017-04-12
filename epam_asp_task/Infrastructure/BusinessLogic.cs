@@ -7,11 +7,11 @@ using System.Text;
 
 namespace epam_asp_task.Infrastructure
 {
-    public class ProjectRepository
+    public class BusinessLogic
     {
         ProjectContext pc = new ProjectContext();
         public IEnumerable<Article> Articles { get { return pc.Articles; } }
-        public IEnumerable<Feedback> Feedbacks { get { return pc.Feedbacks; } }
+        public IEnumerable<Feedback> Feedback { get { return pc.Feedback; } }
         public IEnumerable<Inquirer> Inquirers { get { return pc.Inquirers; } }
         public IEnumerable<Comment> Comments { get; set; }
 
@@ -129,7 +129,7 @@ namespace epam_asp_task.Infrastructure
 
         public void AddFeedback(Feedback feedback)
         {
-            pc.Feedbacks.Add(feedback);
+            pc.Feedback.Add(feedback);
             pc.SaveChanges();
         }
 

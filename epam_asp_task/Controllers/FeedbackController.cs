@@ -10,11 +10,11 @@ namespace epam_asp_task.Controllers
 {
     public class FeedbackController : Controller
     {
-        ProjectRepository repository = new ProjectRepository();
+        BusinessLogic bl = new BusinessLogic();
 
         public ActionResult Feedback()
         {
-            List<Feedback> feedbacks = repository.Feedbacks.ToList();
+            List<Feedback> feedbacks = bl.Feedback.ToList();
             return View(feedbacks);
         }
 
@@ -30,7 +30,7 @@ namespace epam_asp_task.Controllers
             {
                 newFeedback.PublicationDate = DateTime.UtcNow;
                 TempData["Message"] = "Hurray! Your feedback is added!";
-                repository.AddFeedback(newFeedback);
+                bl.AddFeedback(newFeedback);
                 return RedirectToAction("Feedback");
             }
             return View("FeedbackForm");

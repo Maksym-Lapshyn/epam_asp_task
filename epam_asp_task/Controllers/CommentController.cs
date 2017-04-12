@@ -10,7 +10,7 @@ namespace epam_asp_task.Controllers
 {
     public class CommentController : Controller
     {
-        ProjectRepository repository = new ProjectRepository();
+        BusinessLogic bl = new BusinessLogic();
 
         public PartialViewResult CommentForm(int parentId, bool isArticle)
         {
@@ -28,11 +28,11 @@ namespace epam_asp_task.Controllers
                 TempData["Message"] = "Hurray! Your comment is added!";
                 if (isArticle)
                 {
-                    repository.AddCommentForArticle(newComment, parentId);
+                    bl.AddCommentForArticle(newComment, parentId);
                 }
                 else
                 {
-                    repository.AddCommentForComment(newComment, parentId);
+                    bl.AddCommentForComment(newComment, parentId);
                 }
                 return RedirectToAction("Article", "Article", new { articleId = Convert.ToInt32(Session["ArticleId"]) });
             }

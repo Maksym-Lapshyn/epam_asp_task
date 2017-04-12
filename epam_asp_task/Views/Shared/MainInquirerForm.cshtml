@@ -5,12 +5,10 @@
 @using (Html.BeginForm("InquirerForm", "Inquirer", FormMethod.Post))
 {
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h1>Vote</h1>
-        </div>
         <div class="panel-body">
             @Html.HiddenFor(i => i.Id)
             @Html.HiddenFor(i => i.Name)
+            @Html.HiddenFor(i => i.TextInput)
             @Html.RenderInquirer(Model)
         </div>
         <div class="panel-footer">
