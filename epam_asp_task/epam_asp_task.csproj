@@ -145,12 +145,14 @@
     <Compile Include="Infrastructure\ArticleNameAttribute.cs" />
     <Compile Include="Infrastructure\CustomHelpers.cs" />
     <Compile Include="Infrastructure\BusinessLogic.cs" />
+    <Compile Include="Infrastructure\RadioOptions.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Inquirer.cs" />
     <Compile Include="Infrastructure\ProjectContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\InquirerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -158,7 +160,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\FeedbackForm.cshtml" />
+    <Content Include="Views\Feedback\FeedbackForm.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Article\Article.cshtml" />
     <Content Include="Views\Feedback\Feedback.cshtml" />
@@ -167,12 +169,12 @@
     <Content Include="Views\Admin\EditArticle.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Inquirer\InquirerForm.cshtml" />
-    <Content Include="Views\Shared\MainInquirerForm.cshtml" />
-    <Content Include="Views\Shared\PopularTags.cshtml" />
-    <Content Include="Views\Shared\SimilarArticles.cshtml" />
+    <Content Include="Views\Inquirer\MainInquirerForm.cshtml" />
+    <Content Include="Views\Admin\PopularTags.cshtml" />
+    <Content Include="Views\Article\SimilarArticles.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Shared\CommentForm.cshtml" />
+    <Content Include="Views\Comment\CommentForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -183,7 +185,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

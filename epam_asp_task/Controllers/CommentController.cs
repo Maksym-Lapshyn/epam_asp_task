@@ -12,31 +12,27 @@ namespace epam_asp_task.Controllers
     {
         BusinessLogic bl = new BusinessLogic();
 
-        public PartialViewResult CommentForm(int parentId, bool isArticle)
+        [HttpGet]
+        public PartialViewResult CommentForm(int parentId, bool parentIsArticle)
         {
-            ViewBag.ParentId = parentId;
-            ViewBag.IsArticle = isArticle;
-            return PartialView(new Comment());
+            Comment comment = new Comment();
+            comment.ParentId = parentId;
+            comment.ParentIsArticle = parentIsArticle;
+            return PartialView(comment);
         }
 
         [HttpPost]
-        public ActionResult PostComment(Comment newComment, int parentId, bool isArticle)
+        public ActionResult CommentForm(Comment comment)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                newComment.PublicationDate = DateTime.UtcNow;
-                TempData["Message"] = "Hurray! Your comment is added!";
-                if (isArticle)
-                {
-                    bl.AddCommentForArticle(newComment, parentId);
-                }
-                else
-                {
-                    bl.AddCommentForComment(newComment, parentId);
-                }
-                return RedirectToAction("Article", "Article", new { articleId = Convert.ToInt32(Session["ArticleId"]) });
+                return View(comment);
             }
-            return View("CommentForm");
+
+            bl.AddComment(comment);
+            TempData["Message"] = "Hurray! Your comment is added!";
+            
+            return RedirectToAction("Article", "Article", new { articleId = Convert.ToInt32(Session["ArticleId"]) });
         }
     }
 }

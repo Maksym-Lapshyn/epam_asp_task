@@ -1,6 +1,7 @@
-﻿@using epam_asp_task.Models
-@using epam_asp_task.Infrastructure
-@model Inquirer
+﻿@using epam_asp_task.Infrastructure
+@using epam_asp_task.ViewModels
+
+@model InquirerViewModel
 
 @{
     ViewBag.Title = "Inquirer";
@@ -13,11 +14,13 @@
             <h1>@Model.Name</h1>
         </div>
         <div class="panel-body">
-            @Html.HiddenFor(i => i.Id)
+            @Html.ValidationSummary()
             @Html.HiddenFor(i => i.Name)
+            @Html.HiddenFor(i => i.TextQuestion)
+            @Html.HiddenFor(i => i.RadioQuestion)
+            @Html.HiddenFor(i => i.RadioOptions)
+
             @Html.RenderInquirer(Model)
-            @Html.ValidationMessageFor(i => i.TextInput)
-            @Html.ValidationMessageFor(i => i.Radio)
         </div>
         <div class="panel-footer">
             <p><button type="submit" class="btn btn-default">Submit Inquirer</button></p>

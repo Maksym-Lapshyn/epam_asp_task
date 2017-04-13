@@ -24,16 +24,17 @@ namespace epam_asp_task.Controllers
         }
 
         [HttpPost]
-        public ActionResult FeedbackForm(Feedback newFeedback)
+        public ActionResult FeedbackForm(Feedback feedback)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                newFeedback.PublicationDate = DateTime.UtcNow;
-                TempData["Message"] = "Hurray! Your feedback is added!";
-                bl.AddFeedback(newFeedback);
-                return RedirectToAction("Feedback");
+                return View(feedback);
+                
             }
-            return View("FeedbackForm");
+
+            TempData["Message"] = "Hurray! Your feedback is added!";
+            bl.AddFeedback(feedback);
+            return RedirectToAction("Feedback");
         }
 
     }

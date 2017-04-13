@@ -18,7 +18,7 @@
         <hr />
         <p>Keywords: @Model.Keywords</p>
         <hr />
-        @Ajax.ActionLink("Reply", "CommentForm", "Comment", new { parentId = Model.Id, isArticle = true }, new AjaxOptions { UpdateTargetId = "newComment", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "btn btn-default" })
+        @Ajax.ActionLink("Reply", "CommentForm", "Comment", new { parentId = Model.Id, parentIsArticle = true }, new AjaxOptions { UpdateTargetId = "newComment", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "btn btn-default" })
     </div>
     <div class="panel-footer">
         @if (Model.Comments.Count != 0)
@@ -35,7 +35,7 @@
                         <hr />
                         <p>@comment.PublicationDate</p>
                         <hr />
-                        @Ajax.ActionLink("Reply", "CommentForm", "Comment", new { parentId = comment.Id, isArticle = false }, new AjaxOptions { UpdateTargetId = "newComment", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "btn btn-default" })
+                        @Ajax.ActionLink("Reply", "CommentForm", "Comment", new { parentId = comment.Id, parentIsArticle = false }, new AjaxOptions { UpdateTargetId = "newComment", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "btn btn-default" })
                     </div>
                     <div class="panel-footer">
                         @if (comment.Comments.Count != 0)
@@ -52,7 +52,7 @@
                                         <hr />
                                         <p>@innerComment.PublicationDate</p>
                                         <hr />
-                                        @Ajax.ActionLink("Reply", "CommentForm", "Comment", new { parentId = innerComment.Id, isArticle = false }, new AjaxOptions { UpdateTargetId = "newComment", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "btn btn-default" })
+                                        @Ajax.ActionLink("Reply", "CommentForm", "Comment", new { parentId = innerComment.Id, parentIsArticle = false }, new AjaxOptions { UpdateTargetId = "newComment", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "btn btn-default" })
                                     </div>
                                     <div class="panel-footer">
                                         <div class="panel-footer">

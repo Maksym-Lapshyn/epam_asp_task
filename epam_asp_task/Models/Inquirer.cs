@@ -12,10 +12,8 @@ namespace epam_asp_task.Models
 
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Fill this input")]
         public string TextInput { get; set; }
 
-        [Required(ErrorMessage = "Fill this input")]
         public string Radio { get; set; }
     }
 }

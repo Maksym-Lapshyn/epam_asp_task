@@ -1,6 +1,6 @@
 ﻿@model epam_asp_task.Models.Comment
 
-@using (Html.BeginForm("PostComment", "Comment", new { parentId = ViewBag.ParentId, isArticle = ViewBag.IsArticle }, FormMethod.Post))
+@using (Html.BeginForm("CommentForm", "Comment", FormMethod.Post))
 {
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -17,6 +17,8 @@
 
             @Html.HiddenFor(c => c.Id)
             @Html.HiddenFor(c => c.PublicationDate)
+            @Html.HiddenFor(c => c.ParentId)
+            @Html.HiddenFor(c => c.ParentIsArticle)
         </div>
         <div class="panel-footer">
             <input type="submit" value="Submit comment" class="btn btn-default" />

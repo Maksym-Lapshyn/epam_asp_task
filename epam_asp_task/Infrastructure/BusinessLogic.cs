@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using epam_asp_task.Models;
 using System.Text;
+using epam_asp_task.ViewModels;
 
 namespace epam_asp_task.Infrastructure
 {
@@ -19,11 +20,21 @@ namespace epam_asp_task.Infrastructure
 
         private const int NumberOfSimilarArticles = 5;
 
-        public void AddCommentForArticle(Comment comment, int articleId)
+        public void AddComment(Comment comment)
         {
+            comment.PublicationDate = DateTime.UtcNow;
             pc.Comments.Add(comment);
-            Article parent = pc.Articles.Where(a => a.Id == articleId).First();
-            parent.Comments.Add(comment);
+            if (comment.ParentIsArticle)
+            {
+                Article parent = pc.Articles.Where(a => a.Id == comment.ParentId).First();
+                parent.Comments.Add(comment);
+            }
+            else
+            {
+                Comment parent = pc.Comments.Where(c => c.Id == comment.ParentId).First();
+                parent.Comments.Add(comment);
+            }
+
             pc.SaveChanges();
         }
 
@@ -129,6 +140,7 @@ namespace epam_asp_task.Infrastructure
 
         public void AddFeedback(Feedback feedback)
         {
+            feedback.PublicationDate = DateTime.UtcNow;
             pc.Feedback.Add(feedback);
             pc.SaveChanges();
         }

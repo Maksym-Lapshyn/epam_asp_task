@@ -1,14 +1,14 @@
-﻿@using epam_asp_task.Models
+﻿@using epam_asp_task.ViewModels
 @using epam_asp_task.Infrastructure
-@model Inquirer
+@model InquirerViewModel
 
 @using (Html.BeginForm("InquirerForm", "Inquirer", FormMethod.Post))
 {
     <div class="panel panel-default">
         <div class="panel-body">
-            @Html.HiddenFor(i => i.Id)
+            @Html.ValidationSummary()
             @Html.HiddenFor(i => i.Name)
-            @Html.HiddenFor(i => i.TextInput)
+
             @Html.RenderInquirer(Model)
         </div>
         <div class="panel-footer">

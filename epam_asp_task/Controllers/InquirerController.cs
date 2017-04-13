@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using epam_asp_task.Infrastructure;
 using epam_asp_task.Models;
+using epam_asp_task.ViewModels;
 
 namespace epam_asp_task.Controllers
 {
@@ -12,35 +13,50 @@ namespace epam_asp_task.Controllers
     {
         BusinessLogic bl = new BusinessLogic();
 
+        private string[] InquirerRadioOptions = new[] { "Red", "Blue", "Black" };
+
+        private string[] MainRadioOptions = new [] { "Batman Begins", "The Dark Knight", "The Dark Knight Rises" };
+
         [HttpGet]
         public ActionResult InquirerForm()
         {
-            Inquirer inquirer = new Inquirer();
+            InquirerViewModel inquirer = new InquirerViewModel();
             inquirer.Name = "Country and color";
-            inquirer.TextInput = "Where are you from?";
-            inquirer.Radio = "What is your favorite color?+Red+Blue+Black";
+            inquirer.TextQuestion = "Where are you from?";
+            inquirer.RadioQuestion = "What is your favorite color?";
+            inquirer.RadioOptions = InquirerRadioOptions;
             return View(inquirer);
         }
 
         [HttpPost]
-        public ActionResult InquirerForm(Inquirer inquirer)
+        public ActionResult InquirerForm(InquirerViewModel inquirer)
         {
             if (!ModelState.IsValid)
             {
+                if(inquirer.RadioInput != InquirerViewModel.EmptyInput)
+                {
+                    inquirer.RadioOptions = InquirerRadioOptions;
+                }
                 return View(inquirer);
             }
 
             TempData["Message"] = "Hurray! Your response on inquirer is added!";
-            bl.AddInquirer(inquirer);
+            Inquirer inquirerForSave = new Inquirer();
+            inquirerForSave.Name = inquirer.Name;
+            inquirerForSave.TextInput = inquirer.TextInput;
+            inquirerForSave.Radio = inquirer.RadioInput;
+            bl.AddInquirer(inquirerForSave);
             return RedirectToAction("GetInquirerResults", new { inquirerName = inquirer.Name }); 
         }
 
+        [HttpGet]
         public PartialViewResult MainInquirerForm()
         {
-            Inquirer inquirer = new Inquirer();
-            inquirer.Name = "Where are you from?";
-            inquirer.TextInput = "empty";
-            inquirer.Radio = "Where are you from?+Ukraine+Hungary+Another planet";
+            InquirerViewModel inquirer = new InquirerViewModel();
+            inquirer.Name = "Nolan's Batman";
+            inquirer.TextInput = InquirerViewModel.EmptyInput;
+            inquirer.RadioQuestion = "What is your favorite Nolan's Batman?";
+            inquirer.RadioOptions = new [] { "Batman Begins", "The Dark Knight", "The Dark Knight Rises" };
             return PartialView(inquirer);
         }
 
