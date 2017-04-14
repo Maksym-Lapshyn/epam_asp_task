@@ -1,36 +1,20 @@
-﻿@using epam_asp_task.Infrastructure
-@using epam_asp_task.ViewModels
-
+﻿@using epam_asp_task.ViewModels
+@using epam_asp_task.Infrastructure
 @model InquirerViewModel
 
-@{
-    ViewBag.Title = "Inquirer";
-}
-
-@using (Html.BeginForm("InquirerForm", "Inquirer", FormMethod.Post))
+@using (Ajax.BeginForm("IndexInquirerForm", "Home", new AjaxOptions { UpdateTargetId = "indexInquirer", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>@Model.Name</h1>
+            <p>Vote</p>
         </div>
         <div class="panel-body">
             @Html.ValidationSummary()
             @Html.HiddenFor(i => i.Name)
             @Html.HiddenFor(i => i.TextQuestion)
             @Html.HiddenFor(i => i.RadioQuestion)
-            @Html.HiddenFor(i => i.RadioOptions)
             @Html.HiddenFor(i => i.HasText)
             @Html.HiddenFor(i => i.HasRadio)
-
-            @if (!Model.HasText)
-            {
-                @Html.HiddenFor(i => i.TextInput)
-            }
-
-            @if (!Model.HasRadio)
-            {
-                @Html.HiddenFor(i => i.RadioInput)
-            }
 
             @Html.RenderInquirer(Model)
         </div>

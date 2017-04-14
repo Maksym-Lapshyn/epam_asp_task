@@ -33,14 +33,18 @@
                     @Html.ActionLink("Articles", "Index", "Home", new { }, new { @class = "list-group-item" })
                     @Html.ActionLink("Guests", "Feedback", "Feedback", new { }, new { @class = "list-group-item" })
                     @Html.ActionLink("Inquirer", "InquirerForm", "Inquirer", new { }, new { @class = "list-group-item" })
-                    @if (ViewBag.Title == "CooBlog - The Coolest Articles of the Web")
-                    {
-                        { Html.RenderAction("MainInquirerForm", "Inquirer"); }
-                    }
-                    @if (ViewBag.Title == "Full Article")
+
+                    @if(ViewContext.RouteData.GetRequiredString("controller") == "Article")
                     {
                         { Html.RenderAction("SimilarArticles", "Article"); }
                     }
+
+                    <div id="indexInquirer">
+                        @if (ViewContext.RouteData.GetRequiredString("controller") == "Home")
+                        {
+                            { Html.RenderAction("IndexInquirerForm", "Home"); }
+                        }
+                    </div>
                 </div>
             </div>
         </div>

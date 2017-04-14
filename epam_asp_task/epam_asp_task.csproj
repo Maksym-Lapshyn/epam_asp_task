@@ -146,6 +146,7 @@
     <Compile Include="Infrastructure\CustomHelpers.cs" />
     <Compile Include="Infrastructure\BusinessLogic.cs" />
     <Compile Include="Infrastructure\RadioOptions.cs" />
+    <Compile Include="Infrastructure\InquirerValidationAttribute.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Feedback.cs" />
@@ -169,12 +170,13 @@
     <Content Include="Views\Admin\EditArticle.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Inquirer\InquirerForm.cshtml" />
-    <Content Include="Views\Inquirer\MainInquirerForm.cshtml" />
     <Content Include="Views\Admin\PopularTags.cshtml" />
     <Content Include="Views\Article\SimilarArticles.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Comment\CommentForm.cshtml" />
+    <Content Include="Views\Home\GetIndexInquirerResults.cshtml" />
+    <Content Include="Views\Home\IndexInquirerForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

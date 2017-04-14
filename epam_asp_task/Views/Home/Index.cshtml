@@ -1,8 +1,9 @@
-﻿@using epam_asp_task.Models
+﻿@using epam_asp_task.Infrastructure
+@using epam_asp_task.Models
 @model List<Article>
 
 @{
-    ViewBag.Title = "CooBlog - The Coolest Articles of the Web";
+    ViewBag.Title = "CooBlog - Articles";
 }
 
 @foreach (var article in Model)
@@ -17,7 +18,7 @@
             <p>@article.PublicationDate</p>
         </div>
         <div class="panel-footer">
-            @Html.ActionLink("Full article", "Article", "Article", new { articleId = article.Id}, new { @class = "btn btn-default" })
+            @Html.ActionLink("Full article", "Article", "Article", new { articleId = article.Id }, new { @class = "btn btn-default" })
         </div>
     </div>
 }

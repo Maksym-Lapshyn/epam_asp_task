@@ -145,9 +145,15 @@ namespace epam_asp_task.Infrastructure
             pc.SaveChanges();
         }
 
-        public void AddInquirer(Inquirer inquirer)
+        public void SaveInquirer(InquirerViewModel viewModel)
         {
-            pc.Inquirers.Add(inquirer);
+            Inquirer inquirerForSave = new Inquirer();
+            inquirerForSave.Name = viewModel.Name;
+            inquirerForSave.Text = viewModel.TextInput;
+            inquirerForSave.HasText = viewModel.HasText;
+            inquirerForSave.HasRadio = viewModel.HasRadio;
+            inquirerForSave.Radio = viewModel.RadioInput;
+            pc.Inquirers.Add(inquirerForSave);
             pc.SaveChanges();
         }
 

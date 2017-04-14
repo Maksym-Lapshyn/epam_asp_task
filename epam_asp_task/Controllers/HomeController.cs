@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using epam_asp_task.Infrastructure;
 using epam_asp_task.Models;
+using epam_asp_task.ViewModels;
 
 namespace epam_asp_task.Controllers
 {
@@ -12,15 +13,49 @@ namespace epam_asp_task.Controllers
     {
         BusinessLogic bl = new BusinessLogic();
 
+        private string[] InquirerRadioOptions = new[] { "Batman Begins", "The Dark Knight", "The Dark Knight Rises" };
+
+        [HttpGet]
         public ActionResult Index()
         {
-            //if bl is empty
-            if(bl.Articles.Count() == 0)
+            //if db is empty
+            if (bl.Articles.Count() == 0)
             {
                 GenerateContent();
             }
-            List<Article> smallArticles = bl.GetSmallArticles();
+
+            List <Article> smallArticles = bl.GetSmallArticles();
             return View(smallArticles);
+        }
+
+        [HttpGet]
+        public PartialViewResult IndexInquirerForm()
+        {
+            InquirerViewModel viewModel = new InquirerViewModel();
+            viewModel.Name = "Nolan's Batman";
+            viewModel.HasText = false;
+            viewModel.RadioQuestion = "What is your favorite Nolan's Batman?";
+            viewModel.RadioOptions = new[] { "Batman Begins", "The Dark Knight", "The Dark Knight Rises" };
+            return PartialView(viewModel);
+        }
+
+        [HttpPost]
+        public PartialViewResult IndexInquirerForm(InquirerViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                if (viewModel.HasRadio)
+                {
+                    viewModel.RadioOptions = InquirerRadioOptions;
+                }
+
+                return PartialView(viewModel);
+            }
+
+            TempData["Message"] = "Hurray! Your response on inquirer is added!";
+            bl.SaveInquirer(viewModel);
+            List<Inquirer> inquirers = bl.GetInquirerResults(viewModel.Name).ToList();
+            return PartialView("GetIndexInquirerResults", inquirers);
         }
 
         private void GenerateContent()

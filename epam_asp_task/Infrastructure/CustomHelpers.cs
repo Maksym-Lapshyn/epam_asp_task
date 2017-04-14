@@ -19,17 +19,17 @@ namespace epam_asp_task.Infrastructure
             h1.InnerHtml += inquirer.Name;
             ul.InnerHtml += h1.ToString();
             Dictionary<string, int> textDictionary = new Dictionary<string, int>();
-            if (inquirer.TextInput != null && inquirer.TextInput != "empty")
+            if (inquirer.HasText)
             {
                 foreach (Inquirer singleResult in inquirers)
                 {
-                    if (!textDictionary.ContainsKey(singleResult.TextInput))
+                    if (!textDictionary.ContainsKey(singleResult.Text))
                     {
-                        textDictionary.Add(singleResult.TextInput, 1);
+                        textDictionary.Add(singleResult.Text, 1);
                     }
                     else
                     {
-                        textDictionary[singleResult.TextInput]++;
+                        textDictionary[singleResult.Text]++;
                     }
                 }
                 var textDictionaryOrdered = textDictionary.OrderByDescending(x => x.Value);
@@ -44,7 +44,7 @@ namespace epam_asp_task.Infrastructure
                 ul.InnerHtml += hr.ToString();
             }
             Dictionary<string, int> radioDictionary = new Dictionary<string, int>();
-            if (inquirer.Radio != null && inquirer.Radio != "empty")
+            if (inquirer.HasRadio)
             {
                 foreach (Inquirer singleResult in inquirers)
                 {
@@ -75,7 +75,7 @@ namespace epam_asp_task.Infrastructure
         {
             TagBuilder div = new TagBuilder("div");
             div.AddCssClass("list-group");
-            if (inquirer.TextInput != InquirerViewModel.EmptyInput)
+            if (inquirer.HasText)
             {
                 TagBuilder label = new TagBuilder("label");
                 label.Attributes.Add("for", "TextInput");
@@ -90,7 +90,8 @@ namespace epam_asp_task.Infrastructure
                 TagBuilder hr = new TagBuilder("hr");
                 div.InnerHtml += hr.ToString();
             }
-            if (inquirer.RadioInput != InquirerViewModel.EmptyInput)
+
+            if (inquirer.HasRadio)
             {
                 TagBuilder label = new TagBuilder("label");
                 label.InnerHtml += inquirer.RadioQuestion;
@@ -113,6 +114,7 @@ namespace epam_asp_task.Infrastructure
                 TagBuilder hr = new TagBuilder("hr");
                 div.InnerHtml += hr.ToString();
             }
+
             return new MvcHtmlString(div.ToString());
         }
     }
