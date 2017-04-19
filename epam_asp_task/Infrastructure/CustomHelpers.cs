@@ -19,7 +19,7 @@ namespace epam_asp_task.Infrastructure
             h1.InnerHtml += inquirer.Name;
             ul.InnerHtml += h1.ToString();
             Dictionary<string, int> textDictionary = new Dictionary<string, int>();
-            if (inquirer.HasText)
+            if (inquirer.Text != null)
             {
                 foreach (Inquirer singleResult in inquirers)
                 {
@@ -44,7 +44,7 @@ namespace epam_asp_task.Infrastructure
                 ul.InnerHtml += hr.ToString();
             }
             Dictionary<string, int> radioDictionary = new Dictionary<string, int>();
-            if (inquirer.HasRadio)
+            if (inquirer.Radio != null)
             {
                 foreach (Inquirer singleResult in inquirers)
                 {

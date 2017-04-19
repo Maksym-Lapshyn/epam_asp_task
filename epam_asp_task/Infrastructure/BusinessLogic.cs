@@ -149,10 +149,14 @@ namespace epam_asp_task.Infrastructure
         {
             Inquirer inquirerForSave = new Inquirer();
             inquirerForSave.Name = viewModel.Name;
-            inquirerForSave.Text = viewModel.TextInput;
-            inquirerForSave.HasText = viewModel.HasText;
-            inquirerForSave.HasRadio = viewModel.HasRadio;
-            inquirerForSave.Radio = viewModel.RadioInput;
+            if(viewModel.HasText)
+            {
+                inquirerForSave.Text = viewModel.TextInput;
+            }
+            if(viewModel.HasRadio)
+            {
+                inquirerForSave.Radio = viewModel.RadioInput;
+            }
             pc.Inquirers.Add(inquirerForSave);
             pc.SaveChanges();
         }

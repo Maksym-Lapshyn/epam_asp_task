@@ -23,7 +23,6 @@
     <div class="panel-footer">
         @if (Model.Comments.Count != 0)
         {
-            <hr />
             foreach (Comment comment in Model.Comments)
             {
                 <div class="panel panel-warning">
@@ -40,7 +39,6 @@
                     <div class="panel-footer">
                         @if (comment.Comments.Count != 0)
                         {
-                            <hr />
                             foreach (Comment innerComment in comment.Comments)
                             {
                                 <div class="panel panel-danger">
@@ -58,7 +56,6 @@
                                         <div class="panel-footer">
                                             @if (innerComment.Comments.Count != 0)
                                             {
-                                                <hr />
                                                 foreach (Comment finalComment in innerComment.Comments)
                                                 {
                                                     <div class="panel panel-primary">

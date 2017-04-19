@@ -29,6 +29,19 @@ namespace epam_asp_task.Controllers
         }
 
         [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Search(string prefix)
+        {
+            var articles = bl.Articles.Where(a => a.Name.StartsWith(prefix)).Select(a => new { id = a.Id, name = a.Name });
+            return Json(articles, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public PartialViewResult IndexInquirerForm()
         {
             InquirerViewModel viewModel = new InquirerViewModel();
