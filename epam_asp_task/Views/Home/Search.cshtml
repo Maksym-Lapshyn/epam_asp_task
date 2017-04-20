@@ -1,0 +1,35 @@
+﻿@using epam_asp_task.Models
+@model Article
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ArticleForSearchName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Home/Search",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>
+@using (Html.BeginForm("Article", "Article"))
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "ArticleForSearchName" })
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+}  

@@ -6,6 +6,8 @@
     ViewBag.Title = "CooBlog - Articles";
 }
 
+@{ Html.RenderAction("Search", "Home"); }
+
 @foreach (var article in Model)
 {
     <div class="panel panel-default">
