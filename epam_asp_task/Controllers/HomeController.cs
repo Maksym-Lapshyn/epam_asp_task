@@ -37,7 +37,7 @@ namespace epam_asp_task.Controllers
         [HttpPost]
         public JsonResult Search(string prefix)
         {
-            var articles = bl.Articles.Where(a => a.Name.StartsWith(prefix)).Select(a => new { Name = a.Name });
+            var articles = bl.Articles.Where(a => a.Name.StartsWith(prefix)).Select(a => new { label = a.Name, val = a.Id });
             return Json(articles, JsonRequestBehavior.AllowGet);
         }
 

@@ -186,6 +186,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ArticleNameAttribute.cs" />
+    <Compile Include="Infrastructure\CommentContentAttribute.cs" />
     <Compile Include="Infrastructure\CustomHelpers.cs" />
     <Compile Include="Infrastructure\BusinessLogic.cs" />
     <Compile Include="Infrastructure\RadioOptions.cs" />

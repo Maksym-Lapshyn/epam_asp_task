@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using epam_asp_task.Infrastructure;
+using System.Web.Mvc;
 
 namespace epam_asp_task.Models
 {
@@ -14,6 +16,8 @@ namespace epam_asp_task.Models
         public string Author { get; set; }
 
         [Required(ErrorMessage = "Enter comment content")]
+        [CommentContent(ErrorMessage = "Comment should not contain following tags: iframe, object, script")]
+        [AllowHtml]
         public string Content { get; set; }
 
         public DateTime PublicationDate { get; set; }

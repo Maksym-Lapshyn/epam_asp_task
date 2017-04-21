@@ -25,16 +25,5 @@ namespace epam_asp_task.Infrastructure
 
             return true;
         }
-
-        /*protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            string articleName = value.ToString();
-            Article sameArticle = repository.Articles.Where(a => a.Name == articleName).FirstOrDefault();
-            if (sameArticle == null)
-            {
-                return null;
-            }
-            return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
-        }*/
     }
 }

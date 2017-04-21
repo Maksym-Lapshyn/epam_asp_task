@@ -2,34 +2,47 @@
 @model Article
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#ArticleForSearchName").autocomplete({
+    $(function () {
+        $("#Name").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/Home/Search",
-                    type: "POST",
+                    url: '/Home/Search',
+                    data: "{ 'prefix': '" + request.term + "'}",
                     dataType: "json",
-                    data: { Prefix: request.term },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.Name, value: item.Name };
+                            return item;
                         }))
-
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
                     }
-                })
+                });
             },
-            messages: {
-                noResults: "", results: ""
-            }
+            select: function (e, i) {
+                $("#articleId").val(i.item.val);
+            },
+            minLength: 1
         });
-    })
+    });
 </script>
 @using (Html.BeginForm("Article", "Article"))
 {
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <p>Search article by name</p>
+        </div>
         <div class="panel-body">
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "ArticleForSearchName" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            <input type="hidden" id="articleId" name="articleId" />
+        </div>
+        <div class="panel-footer">
             <input type="submit" value="Search" class="btn btn-default" />
         </div>
     </div>
-}  
+}
